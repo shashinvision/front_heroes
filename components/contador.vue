@@ -8,6 +8,7 @@
         <button>-</button>
         <label class="label-contador"> 123</label>
         <button>+</button>
+        <i class="far fa-trash-alt"></i>
       </div>
     </div>
   </div>
@@ -55,5 +56,26 @@ button {
   width: 30px;
   height: 30px;
   border-radius: 50%;
+  border: 0;
+  color: rgb(13, 94, 10);
+  font-weight: bold;
+}
+button:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+button:active {
+  opacity: 0.5;
+}
+i {
+  margin-left: 10px;
+}
+i:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+i:active {
+  cursor: pointer;
+  opacity: 0.5;
 }
 </style>
