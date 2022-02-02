@@ -3,7 +3,7 @@
     <div class="lateralBar flex-container">
       <div class="col-6" id="select-container">
         <select name="" id="">
-          <option value="">Lorem</option>
+          <option value="">-- Menor que ---</option>
         </select>
       </div>
       <div class="col-6" id="btn-container">
@@ -31,20 +31,37 @@ export default {
   margin-left: 20%;
 }
 #btn-container {
-  margin-left: 50%;
+  margin-left: 30%;
 }
 .col-6 {
   width: 50%;
+}
+select {
+  background-color: #5c6bc0;
+  border-color: #5c6bc0;
+  border-radius: 3px;
+  padding: 5px;
+}
+button {
+  background-color: #5c6bc0;
+  border-color: #5c6bc0;
+  border-radius: 3px;
+  padding: 5px;
+  shadow: 0 1px 0 0;
+  width: 50% !important;
 }
 @media (max-width: 376px) {
   .col-6 {
     width: 80%;
     margin: 0 auto !important;
+    margin-top: 10px !important;
   }
   .flex-container {
     display: block !important;
     padding-top: 10px;
+    padding-bottom: 10px;
     margin: 0 auto !important;
+    height: auto;
   }
   select {
     width: 100% !important;

@@ -1,5 +1,5 @@
 <template>
-  <div id="content">
+  <div class="content centrar">
     <p>Contenido</p>
   </div>
 </template>
