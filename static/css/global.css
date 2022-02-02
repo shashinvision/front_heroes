@@ -20,3 +20,11 @@ html {
   width: 100%;
   color: white;
 }
+.flex-container {
+  display: flex;
+  align-items: center;
+}
+.centrar {
+  margin: 0 auto !important;
+  margin: 0 auto !important;
+}
