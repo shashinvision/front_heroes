@@ -33,3 +33,13 @@ html {
   padding-top: 10px;
   padding-bottom: 10px;
 }
+button:hover,
+i:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+button:active,
+i:active {
+  cursor: pointer;
+  opacity: 0.5;
+}

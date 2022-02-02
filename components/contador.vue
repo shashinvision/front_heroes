@@ -60,23 +60,8 @@ button {
   color: rgb(13, 94, 10);
   font-weight: bold;
 }
-button:hover {
-  cursor: pointer;
-  opacity: 0.9;
-}
-button:active {
-  opacity: 0.5;
-}
 i {
   margin-left: 10px;
-}
-i:hover {
-  cursor: pointer;
-  opacity: 0.9;
-}
-i:active {
-  cursor: pointer;
-  opacity: 0.5;
 }
 .menos {
   color: red;
