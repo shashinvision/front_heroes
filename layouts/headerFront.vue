@@ -7,16 +7,19 @@
         </select>
       </div>
       <div class="col-6" id="btn-container">
-        <button>+</button>
+        <modal />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import modal from "../components/modal.vue";
 export default {
   name: "FrontHeroesHeader",
-
+  components: {
+    modal,
+  },
   data() {
     return {};
   },
@@ -43,16 +46,7 @@ select {
   padding: 5px;
   color: white;
 }
-button {
-  background-color: #5c6bc0;
-  border-color: #5c6bc0;
-  border: 0;
-  border-radius: 3px;
-  padding: 5px;
-  box-shadow: 2px 9px 20px -6px rgba(0, 0, 0, 0.43);
-  width: 50% !important;
-  color: white;
-}
+
 @media (max-width: 376px) {
   .col-6 {
     width: 80%;
