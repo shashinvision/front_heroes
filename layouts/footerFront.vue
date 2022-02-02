@@ -17,13 +17,3 @@ export default {
   methods: {},
 };
 </script>
-
-<style lang="css">
-.footer {
-  background-color: #4526a0;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  color: white;
-}
-</style>

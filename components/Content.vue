@@ -17,10 +17,3 @@ export default {
   methods: {},
 };
 </script>
-
-<style lang="css">
-html {
-  background-color: #1f1f1f;
-  color: white;
-}
-</style>
