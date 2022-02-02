@@ -45,9 +45,10 @@ select {
 button {
   background-color: #5c6bc0;
   border-color: #5c6bc0;
+  border: 0;
   border-radius: 3px;
   padding: 5px;
-  shadow: 0 1px 0 0;
+  box-shadow: 2px 9px 20px -6px rgba(0, 0, 0, 0.43);
   width: 50% !important;
 }
 @media (max-width: 376px) {
