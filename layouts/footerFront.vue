@@ -1,6 +1,11 @@
 <template>
   <div>
-    <div class="lateralBar footer"></div>
+    <div class="lateralBar footer">
+      <div class="footer-container centrar">
+        <label>&#931; :</label>
+        <span for="">1000</span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -17,3 +22,9 @@ export default {
   methods: {},
 };
 </script>
+<style scoped>
+.footer-container {
+  margin-top: 10px !important;
+  margin-left: 50% !important;
+}
+</style>
