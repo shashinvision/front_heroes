@@ -5,9 +5,9 @@
         <label>Lorem ipsum dolor sit amet.</label>
       </div>
       <div class="button-container centrar">
-        <button>-</button>
+        <button class="menos">-</button>
         <label class="label-contador"> 123</label>
-        <button>+</button>
+        <button class="mas">+</button>
         <i class="far fa-trash-alt"></i>
       </div>
     </div>
@@ -77,5 +77,8 @@ i:hover {
 i:active {
   cursor: pointer;
   opacity: 0.5;
+}
+.menos {
+  color: red;
 }
 </style>
