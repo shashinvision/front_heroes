@@ -41,6 +41,7 @@ select {
   border-color: #5c6bc0;
   border-radius: 3px;
   padding: 5px;
+  color: white;
 }
 button {
   background-color: #5c6bc0;
@@ -50,6 +51,7 @@ button {
   padding: 5px;
   box-shadow: 2px 9px 20px -6px rgba(0, 0, 0, 0.43);
   width: 50% !important;
+  color: white;
 }
 @media (max-width: 376px) {
   .col-6 {
