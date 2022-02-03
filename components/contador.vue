@@ -8,15 +8,22 @@
           placeholder="Nombre del contador..."
           v-model="contadorInput.nombre"
         />
-        <input v-else type="text" readonly :value="dataContador.nombre" />
+        <input
+          v-else
+          type="text"
+          readonly
+          :value="dataContador.dataContador.nombre"
+        />
       </div>
       <div v-if="nuevo" class="button-container centrar">
         <a href="#" class="add" @click="contadorAdd">Añadir</a>
       </div>
       <div v-else class="button-container centrar">
-        <button class="menos">-</button>
-        <label class="label-contador">{{ dataContador.contador || "0" }}</label>
-        <button class="mas">+</button>
+        <button class="menos" @click="menos">-</button>
+        <label class="label-contador">{{
+          contadorInput.contador || "0"
+        }}</label>
+        <button class="mas" @click="mas">+</button>
         <i class="far fa-trash-alt"></i>
       </div>
     </div>
@@ -52,12 +59,33 @@ export default {
   methods: {
     ...mapActions({
       addContador: "contadorAction",
+      contadorMutation: "sumaRestaContadorAction",
     }),
     contadorAdd() {
       // para que no ocurra el error "Vuex - Do not mutate vuex store state outside mutation handlers" creamos la variable con una clonación del objeto y se envía al action de Vuex
       let data = { ...this.contadorInput };
       this.addContador(data);
       this.contadorInput.nombre = "";
+    },
+    mas() {
+      if (this.contadorInput.contador < 20) {
+        this.contadorInput.contador++;
+        let data = {
+          indexContador: this.dataContador.index,
+          contador: this.contadorInput.contador,
+        };
+        this.contadorMutation(data);
+      }
+    },
+    menos() {
+      if (this.contadorInput.contador > 0) {
+        this.contadorInput.contador--;
+        let data = {
+          indexContador: this.dataContador.index,
+          contador: this.contadorInput.contador,
+        };
+        this.contadorMutation(data);
+      }
     },
   },
 };
