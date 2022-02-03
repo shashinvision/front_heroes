@@ -1,11 +1,11 @@
 <template>
   <div id="contenedor" class="content centrar">
-    <select name="" id="">
-      <option>-- Orden --</option>
+    <select name="" id="" v-model="orden">
+      <option value="">-- Orden --</option>
       <option value="asc">Ascendente</option>
       <option value="desc">Descendente</option>
     </select>
-    <div v-for="(dataContador, index) in getContadores" :key="index">
+    <div v-for="(dataContador, index) in ordenContadores" :key="index">
       <contador :dataContador="{ dataContador, index }" />
     </div>
   </div>
@@ -22,9 +22,20 @@ export default {
   },
   computed: {
     ...mapGetters(["getContadores"]),
+    ordenContadores() {
+      let resultado = { ...this.getContadores };
+
+      if (this.orden == "asc") {
+        console.log(resultado);
+      } else if (this.orden == "desc") {
+      }
+      return resultado;
+    },
   },
   data() {
-    return {};
+    return {
+      orden: "",
+    };
   },
 
   mounted() {},
