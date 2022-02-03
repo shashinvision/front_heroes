@@ -1,6 +1,8 @@
 <template>
   <div>
-    <a href="#miModal" class="activacion">Nuevo</a>
+    <a v-if="contadores.length < 20" href="#miModal" class="activacion"
+      >Nuevo</a
+    >
     <!-- <a href="javascript:void(0)" class="activacion">Nuevo</a> -->
     <div id="miModal" class="modal">
       <div class="modal-contenido">
@@ -13,8 +15,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import contador from "./contador";
-
 export default {
   name: "FrontHeroesModal",
   components: {
@@ -23,7 +25,9 @@ export default {
   data() {
     return {};
   },
-
+  computed: {
+    ...mapState(["contadores"]),
+  },
   mounted() {},
 
   methods: {},
