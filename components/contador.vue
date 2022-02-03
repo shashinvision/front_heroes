@@ -24,7 +24,7 @@
           contadorInput.contador || "0"
         }}</label>
         <button class="mas" @click="mas">+</button>
-        <i class="far fa-trash-alt"></i>
+        <i class="far fa-trash-alt" @click="eliminar"></i>
       </div>
     </div>
   </div>
@@ -60,6 +60,7 @@ export default {
     ...mapActions({
       addContador: "contadorAction",
       contadorMutation: "sumaRestaContadorAction",
+      eliminarContador: "eliminarContadorAction",
     }),
     contadorAdd() {
       // para que no ocurra el error "Vuex - Do not mutate vuex store state outside mutation handlers" creamos la variable con una clonación del objeto y se envía al action de Vuex
@@ -85,6 +86,11 @@ export default {
           contador: this.contadorInput.contador,
         };
         this.contadorMutation(data);
+      }
+    },
+    eliminar() {
+      if (confirm("Estas apunto de eliminar un contador, estas seguro?")) {
+        this.eliminarContador(this.dataContador.index);
       }
     },
   },

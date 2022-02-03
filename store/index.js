@@ -22,6 +22,10 @@ export const actions = {
   sumaRestaContadorAction(context, payload) {
     context.commit("sumaRestaContadorMutation", payload);
   },
+  eliminarContadorAction(context, payload) {
+    console.log("payload eliminar", payload);
+    context.commit("eliminarContadorMutation", payload);
+  },
 };
 
 export const mutations = {
@@ -29,13 +33,17 @@ export const mutations = {
     state.contadores.push(payload);
   },
   sumaRestaContadorMutation(state, payload) {
-    console.log("state", state);
-    console.log("payload", payload);
-
     for (let i = 0; i < state.contadores.length; i++) {
       if (payload.indexContador == i) {
         console.log("contador", state.contadores[i]);
         state.contadores[i].contador = payload.contador;
+      }
+    }
+  },
+  eliminarContadorMutation(state, payload) {
+    for (let i = 0; i < state.contadores.length; i++) {
+      if (payload == i) {
+        state.contadores.splice(i, 1);
       }
     }
   },
