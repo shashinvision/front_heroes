@@ -47,7 +47,7 @@ select {
   color: white;
 }
 
-@media (max-width: 376px) {
+@media (max-width: 621px) {
   .col-6 {
     width: 80%;
     margin: 0 auto !important;
@@ -63,7 +63,7 @@ select {
   select {
     width: 100% !important;
   }
-  button {
+  modal {
     width: 100% !important;
   }
 }

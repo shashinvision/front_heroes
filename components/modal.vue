@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a href="#miModal" class="activacion">+</a>
+    <a href="#miModal" class="activacion">Nuevo</a>
     <div id="miModal" class="modal">
       <div class="modal-contenido">
         <a href="#" class="cerrar">X</a>
@@ -73,11 +73,18 @@ a {
   color: white;
   font-weight: bold;
 }
-@media (max-width: 376px) {
+@media (max-width: 621px) {
   .activacion {
-    width: 100% !important;
-    padding-left: 9em;
-    padding-right: 9em;
+    padding-left: 45%;
+    padding-right: 45%;
+    margin-right: 10%;
+  }
+}
+@media (max-width: 450px) {
+  .activacion {
+    padding-left: 43% !important;
+    padding-right: 43% !important;
+    margin-right: 10%;
   }
 }
 </style>
