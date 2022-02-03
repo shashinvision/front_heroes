@@ -57,6 +57,7 @@ export default {
       // para que no ocurra el error "Vuex - Do not mutate vuex store state outside mutation handlers" creamos la variable con una clonación del objeto y se envía al action de Vuex
       let data = { ...this.contadorInput };
       this.addContador(data);
+      this.contadorInput.nombre = "";
     },
   },
 };

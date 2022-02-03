@@ -1,6 +1,5 @@
 <template>
   <div class="content centrar">
-    {{ getContadores }}
     <div v-for="(dataContador, index) in getContadores" :key="index">
       <contador :dataContador="dataContador" />
     </div>
