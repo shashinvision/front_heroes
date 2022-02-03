@@ -14,7 +14,7 @@
       </div>
       <div v-else class="button-container centrar">
         <button class="menos">-</button>
-        <label class="label-contador"> 123</label>
+        <label class="label-contador">{{ contador.contador || "0" }}</label>
         <button class="mas">+</button>
         <i class="far fa-trash-alt"></i>
       </div>
@@ -31,7 +31,7 @@ export default {
     return {
       contador: {
         nombre: this.dataContador.nombre,
-        contador: 0,
+        contador: this.dataContador.contador,
       },
     };
   },
