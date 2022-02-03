@@ -106,6 +106,8 @@ input {
   border: 0;
   margin-top: 7%;
   align-items: center;
+  height: 28px;
+  border-radius: 3px;
 }
 @media (max-width: 376px) {
   input {
