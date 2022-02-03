@@ -1,5 +1,5 @@
 <template>
-  <div class="content centrar">
+  <div id="contenedor" class="content centrar">
     <!-- {{ getContadores }} -->
     <div v-for="(dataContador, index) in getContadores" :key="index">
       <contador :dataContador="{ dataContador, index }" />
@@ -28,3 +28,8 @@ export default {
   methods: {},
 };
 </script>
+<style>
+#contenedor {
+  margin-bottom: 80px !important;
+}
+</style>

@@ -17,7 +17,7 @@ export const getters = {
 
 export const actions = {
   contadorAction(context, payload) {
-    context.commit("contadoMutation", payload);
+    context.commit("contadorMutation", payload);
   },
   sumaRestaContadorAction(context, payload) {
     context.commit("sumaRestaContadorMutation", payload);
@@ -29,8 +29,13 @@ export const actions = {
 };
 
 export const mutations = {
-  contadoMutation(state, payload) {
-    state.contadores.push(payload);
+  contadorMutation(state, payload) {
+    if (state.contadores.length > 20) {
+      alert("No es permitido crear más de 20 contadores");
+    }
+    {
+      state.contadores.push(payload);
+    }
   },
   sumaRestaContadorMutation(state, payload) {
     for (let i = 0; i < state.contadores.length; i++) {
