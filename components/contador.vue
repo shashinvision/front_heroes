@@ -6,10 +6,11 @@
           type="text"
           placeholder="Nombre del contador..."
           :readonly="!nuevo"
+          v-model="contador.nombre"
         />
       </div>
       <div v-if="nuevo" class="button-container centrar">
-        <a href="#" class="add">Añadir</a>
+        <a href="#" class="add" @click="contadorAdd">Añadir</a>
       </div>
       <div v-else class="button-container centrar">
         <button class="menos">-</button>
@@ -22,21 +23,39 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "FrontHeroesContador",
 
   data() {
-    return {};
+    return {
+      contador: {
+        nombre: this.dataContador.nombre,
+        contador: 0,
+      },
+    };
   },
   props: {
     nuevo: {
       type: Boolean,
       default: false,
     },
+    dataContador: {
+      type: Object,
+      default: () => {
+        return {};
+      },
+    },
   },
   mounted() {},
-
-  methods: {},
+  methods: {
+    ...mapActions({
+      addContador: "contadorAction",
+    }),
+    contadorAdd() {
+      this.addContador(this.contador);
+    },
+  },
 };
 </script>
 
