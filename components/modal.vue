@@ -73,6 +73,12 @@ a {
   color: white;
   font-weight: bold;
 }
+.activacion:hover {
+  opacity: 0.9;
+}
+.activacion:active {
+  opacity: 0.5;
+}
 @media (max-width: 621px) {
   .activacion {
     padding-left: 45%;
