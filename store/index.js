@@ -2,6 +2,12 @@ export const state = () => ({
   contadores: [],
 });
 
+export const getters = {
+  getContadores(state) {
+    return state.contadores;
+  },
+};
+
 export const actions = {
   contadorAction(context, payload) {
     console.log("context", context);
@@ -16,7 +22,12 @@ export const mutations = {
   },
 };
 
-//Acciones
+// // Estado
+// export const state = () => ({
+//     _counter: 0
+// });
+
+// //Acciones
 // export const actions = {
 //     sumar(context, num) {
 //         context.commit('SUMAR', num)

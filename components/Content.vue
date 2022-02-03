@@ -1,6 +1,7 @@
 <template>
   <div class="content centrar">
-    <div v-for="(dataContador, index) in contadores" :key="index">
+    {{ getContadores }}
+    <div v-for="(dataContador, index) in getContadores" :key="index">
       <contador :dataContador="dataContador" />
     </div>
   </div>
@@ -8,7 +9,7 @@
 
 <script>
 import contador from "./contador";
-import { mapState } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "FrontHeroesContent",
@@ -16,7 +17,7 @@ export default {
     contador,
   },
   computed: {
-    ...mapState(["contadores"]),
+    ...mapGetters(["getContadores"]),
   },
   data() {
     return {};

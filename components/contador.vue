@@ -3,18 +3,19 @@
     <div class="content">
       <div class="label-container">
         <input
+          v-if="nuevo"
           type="text"
           placeholder="Nombre del contador..."
-          :readonly="!nuevo"
-          v-model="contador.nombre"
+          v-model="contadorInput.nombre"
         />
+        <input v-else type="text" readonly :value="dataContador.nombre" />
       </div>
       <div v-if="nuevo" class="button-container centrar">
         <a href="#" class="add" @click="contadorAdd">Añadir</a>
       </div>
       <div v-else class="button-container centrar">
         <button class="menos">-</button>
-        <label class="label-contador">{{ contador.contador || "0" }}</label>
+        <label class="label-contador">{{ dataContador.contador || "0" }}</label>
         <button class="mas">+</button>
         <i class="far fa-trash-alt"></i>
       </div>
@@ -29,9 +30,9 @@ export default {
 
   data() {
     return {
-      contador: {
-        nombre: this.dataContador.nombre,
-        contador: this.dataContador.contador,
+      contadorInput: {
+        nombre: "",
+        contador: 0,
       },
     };
   },
@@ -53,7 +54,9 @@ export default {
       addContador: "contadorAction",
     }),
     contadorAdd() {
-      this.addContador(this.contador);
+      // para que no ocurra el error "Vuex - Do not mutate vuex store state outside mutation handlers" creamos la variable con una clonación del objeto y se envía al action de Vuex
+      let data = { ...this.contadorInput };
+      this.addContador(data);
     },
   },
 };
