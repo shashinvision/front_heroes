@@ -16,7 +16,7 @@
         />
       </div>
       <div v-if="nuevo" class="button-container centrar">
-        <a href="#" class="add" @click="contadorAdd">Añadir</a>
+        <a class="add" @click="contadorAdd">Añadir</a>
       </div>
       <div v-else class="button-container centrar">
         <button class="menos" @click="menos">-</button>
@@ -34,7 +34,6 @@
 import { mapActions } from "vuex";
 export default {
   name: "FrontHeroesContador",
-
   data() {
     return {
       contadorInput: {
@@ -63,10 +62,16 @@ export default {
       eliminarContador: "eliminarContadorAction",
     }),
     contadorAdd() {
-      // para que no ocurra el error "Vuex - Do not mutate vuex store state outside mutation handlers" creamos la variable con una clonación del objeto y se envía al action de Vuex
-      let data = { ...this.contadorInput };
-      this.addContador(data);
-      this.contadorInput.nombre = "";
+      if (this.contadorInput.nombre != "") {
+        // para que no ocurra el error "Vuex - Do not mutate vuex store state outside mutation handlers" creamos la variable con una clonación del objeto y se envía al action de Vuex
+        let data = { ...this.contadorInput };
+        this.addContador(data);
+        this.contadorInput.nombre = "";
+        // this.$router.push({ name: "Home" });
+        this.$router.back();
+      } else {
+        alert("Favor indicar nombre del contador");
+      }
     },
     mas() {
       if (this.contadorInput.contador < 20) {
