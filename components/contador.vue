@@ -2,9 +2,16 @@
   <div class="contador-container">
     <div class="content">
       <div class="label-container">
-        <label>Lorem ipsum dolor sit amet.</label>
+        <input
+          type="text"
+          placeholder="Nombre del contador..."
+          :readonly="!nuevo"
+        />
       </div>
-      <div class="button-container centrar">
+      <div v-if="nuevo" class="button-container centrar">
+        <a href="#" class="add">Añadir</a>
+      </div>
+      <div v-else class="button-container centrar">
         <button class="menos">-</button>
         <label class="label-contador"> 123</label>
         <button class="mas">+</button>
@@ -21,7 +28,12 @@ export default {
   data() {
     return {};
   },
-
+  props: {
+    nuevo: {
+      type: Boolean,
+      default: false,
+    },
+  },
   mounted() {},
 
   methods: {},
@@ -52,7 +64,8 @@ export default {
 .label-contador {
   padding: 0 10px 0 10px;
 }
-button {
+.mas,
+.menos {
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -65,5 +78,38 @@ i {
 }
 .menos {
   color: red;
+}
+.add {
+  background-color: #617aca;
+  border: 0;
+  border-radius: 3px;
+  color: white;
+  width: 100%;
+  padding: 10px;
+  margin-right: 20%;
+}
+.add:hover {
+  opacity: 0.9;
+}
+.add:active {
+  opacity: 0.5;
+}
+.cancel {
+  background-color: #98aefa;
+  border: 0;
+  border-radius: 3px;
+  color: white;
+  width: 100%;
+  padding: 10px;
+}
+input {
+  border: 0;
+  margin-top: 7%;
+  align-items: center;
+}
+@media (max-width: 376px) {
+  input {
+    display: block !important;
+  }
 }
 </style>

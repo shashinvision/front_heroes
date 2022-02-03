@@ -4,8 +4,8 @@
     <div id="miModal" class="modal">
       <div class="modal-contenido">
         <a href="#" class="cerrar">X</a>
-        <h2>Mi primer Modal</h2>
-        <contador />
+        <h2>Nuevo contador</h2>
+        <contador :nuevo="true" />
       </div>
     </div>
   </div>
@@ -70,5 +70,14 @@ a {
 }
 .cerrar {
   margin-left: 95%;
+  color: white;
+  font-weight: bold;
+}
+@media (max-width: 376px) {
+  .activacion {
+    width: 100% !important;
+    padding-left: 9em;
+    padding-right: 9em;
+  }
 }
 </style>
