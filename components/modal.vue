@@ -1,6 +1,7 @@
 <template>
   <div>
     <a href="#miModal" class="activacion">Nuevo</a>
+    <!-- <a href="javascript:void(0)" class="activacion">Nuevo</a> -->
     <div id="miModal" class="modal">
       <div class="modal-contenido">
         <a href="#" class="cerrar">X</a>
