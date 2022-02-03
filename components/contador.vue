@@ -7,6 +7,7 @@
           type="text"
           placeholder="Nombre del contador..."
           v-model="contadorInput.nombre"
+          maxlength="20"
         />
         <input
           v-else
