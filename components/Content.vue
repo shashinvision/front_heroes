@@ -1,6 +1,10 @@
 <template>
   <div id="contenedor" class="content centrar">
-    <!-- {{ getContadores }} -->
+    <select name="" id="">
+      <option>-- Orden --</option>
+      <option value="asc">Ascendente</option>
+      <option value="desc">Descendente</option>
+    </select>
     <div v-for="(dataContador, index) in getContadores" :key="index">
       <contador :dataContador="{ dataContador, index }" />
     </div>
