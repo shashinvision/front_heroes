@@ -5,7 +5,7 @@
       <option value="asc">Ascendente</option>
       <option value="desc">Descendente</option>
     </select>
-    <div v-for="(dataContador, index) in ordenContadores" :key="index">
+    <div v-for="(dataContador, index) in getContadores" :key="index">
       <contador :dataContador="{ dataContador, index }" />
     </div>
   </div>
@@ -83,9 +83,9 @@ export default {
     ...mapActions({
       actualizarContador: "actualizarContadorAction",
     }),
-    updateContador(payload) {
-      this.actualizarContador(payload);
-    },
+    // updateContador(payload) {
+    //   this.actualizarContador(payload);
+    // },
   },
 };
 </script>
