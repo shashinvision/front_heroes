@@ -39,13 +39,6 @@ export default {
 .col-6 {
   width: 50%;
 }
-select {
-  background-color: #5c6bc0;
-  border-color: #5c6bc0;
-  border-radius: 3px;
-  padding: 5px;
-  color: white;
-}
 
 @media (max-width: 621px) {
   .col-6 {
