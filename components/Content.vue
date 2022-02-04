@@ -1,6 +1,6 @@
 <template>
   <div id="contenedor" class="content centrar">
-    <select name="" id="" v-model="orden">
+    <select name="" id="ordenarSelect" v-model="orden">
       <option value="">-- Ordenar --</option>
       <option value="asc_nom">Ascendente nombre</option>
       <option value="desc_nom">Descendente nombre</option>
@@ -10,12 +10,18 @@
 
     <div v-if="orden == ''">
       <div v-for="(dataContador, index) in getContadores" :key="index">
-        <contador :dataContador="{ dataContador, index }" />
+        <contador
+          @ordenEliminar="ordenEliminar"
+          :dataContador="{ dataContador, index }"
+        />
       </div>
     </div>
     <div v-else>
       <div v-for="(dataContador, index) in ordenContadores" :key="index">
-        <contador :dataContador="{ dataContador, index }" />
+        <contador
+          @ordenEliminar="ordenEliminar"
+          :dataContador="{ dataContador, index }"
+        />
       </div>
     </div>
   </div>
@@ -124,6 +130,10 @@ export default {
     }),
     updateContador(payload) {
       this.actualizarContador(payload);
+    },
+    ordenEliminar(data) {
+      this.orden = data;
+      // document.getElementById("ordenarSelect").selectedIndex = 0;
     },
   },
 };
