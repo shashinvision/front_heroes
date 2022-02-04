@@ -22,7 +22,7 @@
       <div v-else class="button-container centrar">
         <button class="menos" @click="menos">-</button>
         <label class="label-contador">{{
-          dataContador.dataContador.contador || contadorInput.contador
+          dataContador.dataContador.contador
         }}</label>
         <button class="mas" @click="mas">+</button>
         <i class="far fa-trash-alt" @click="eliminar"></i>

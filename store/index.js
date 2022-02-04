@@ -56,6 +56,7 @@ export const mutations = {
     }
   },
   actualizarContadorMutation(state, payload) {
+    console.log("state previo al mutation", state.contadores);
     console.log("payload de mutation", payload);
 
     state.contadores = payload;

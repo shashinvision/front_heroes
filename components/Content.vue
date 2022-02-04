@@ -5,7 +5,10 @@
       <option value="asc">Ascendente</option>
       <option value="desc">Descendente</option>
     </select>
-    <div v-for="(dataContador, index) in ordenContadores" :key="index">
+    <div
+      v-for="(dataContador, index) in getContadores || ordenContadores"
+      :key="index"
+    >
       <contador :dataContador="{ dataContador, index }" />
     </div>
   </div>
@@ -44,24 +47,24 @@ export default {
         // console.log(this.contadores);
       } else if (this.orden == "desc") {
         clonObj.sort((a, b) => {
-          if (b.contador < a.contador) {
+          if (a.contador > b.contador) {
             return -1;
           }
-          if (b.contador > a.contador) {
+          if (a.contador < b.contador) {
             return 1;
           }
-          if (b.nombre.toLowerCase() < a.nombre.toLowerCase()) {
+          if (a.nombre.toLowerCase() > b.nombre.toLowerCase()) {
             return -1;
           }
-          if (b.nombre.toLowerCase() > a.nombre.toLowerCase()) {
+          if (a.nombre.toLowerCase() < b.nombre.toLowerCase()) {
             return 1;
           }
           return 0;
         });
       }
-      console.log(this.clonObj);
+      // console.log(clonObj);
 
-      // this.updateContador(clonObj);
+      this.updateContador(clonObj);
       return clonObj;
     },
   },
