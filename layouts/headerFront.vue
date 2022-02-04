@@ -1,10 +1,31 @@
 <template>
   <div>
     <div class="lateralBar flex-container">
-      <div class="col-6" id="select-container">
-        <select name="" id="">
-          <option value="">-- Menor que ---</option>
-        </select>
+      <div class="col-6 d-flex">
+        <div class="col-6" id="select-container">
+          <select name="" id="">
+            <option value="">-- Mayor que ---</option>
+            <option
+              v-for="(option, index) in cantidadOptions"
+              :key="index"
+              :value="index"
+            >
+              Mayor que {{ index }}
+            </option>
+          </select>
+        </div>
+        <div class="col-6" id="select-container">
+          <select name="" id="">
+            <option value="">-- Menor que ---</option>
+            <option
+              v-for="(option, index) in cantidadOptions"
+              :key="index"
+              :value="index"
+            >
+              Menor que {{ index }}
+            </option>
+          </select>
+        </div>
       </div>
       <div class="col-6" id="btn-container">
         <modal />
@@ -21,7 +42,11 @@ export default {
     modal,
   },
   data() {
-    return {};
+    return {
+      cantidadOptions: [
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20,
+      ],
+    };
   },
 
   mounted() {},
@@ -38,6 +63,9 @@ export default {
 }
 .col-6 {
   width: 50%;
+}
+.d-flex {
+  display: flex;
 }
 
 @media (max-width: 621px) {
