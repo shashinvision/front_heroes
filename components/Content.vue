@@ -1,15 +1,22 @@
 <template>
   <div id="contenedor" class="content centrar">
     <select name="" id="" v-model="orden">
-      <option value="">-- Orden por contrador --</option>
-      <option value="asc">Ascendente</option>
-      <option value="desc">Descendente</option>
+      <option value="">-- Ordenar --</option>
+      <option value="asc_nom">Ascendente nombre</option>
+      <option value="desc_nom">Descendente nombre</option>
+      <option value="asc_cont">Ascendente contador</option>
+      <option value="desc_cont">Descendente contador</option>
     </select>
-    <div
-      v-for="(dataContador, index) in getContadores || ordenContadores"
-      :key="index"
-    >
-      <contador :dataContador="{ dataContador, index }" />
+
+    <div v-if="orden == ''">
+      <div v-for="(dataContador, index) in getContadores" :key="index">
+        <contador :dataContador="{ dataContador, index }" />
+      </div>
+    </div>
+    <div v-else>
+      <div v-for="(dataContador, index) in ordenContadores" :key="index">
+        <contador :dataContador="{ dataContador, index }" />
+      </div>
     </div>
   </div>
 </template>
@@ -27,8 +34,9 @@ export default {
     ...mapGetters(["getContadores"]),
     ordenContadores() {
       let clonObj = JSON.parse(JSON.stringify(this.getContadores));
+      console.log("clonObj", clonObj);
 
-      if (this.orden == "asc") {
+      if (this.orden == "asc_cont") {
         clonObj.sort((a, b) => {
           if (a.contador < b.contador) {
             return -1;
@@ -36,6 +44,40 @@ export default {
           if (a.contador > b.contador) {
             return 1;
           }
+          // if (a.nombre.toLowerCase() < b.nombre.toLowerCase()) {
+          //   return -1;
+          // }
+          // if (a.nombre.toLowerCase() > b.nombre.toLowerCase()) {
+          //   return 1;
+          // }
+          return 0;
+        });
+        // console.log(this.contadores);
+      } else if (this.orden == "desc_cont") {
+        clonObj.sort((a, b) => {
+          if (a.contador > b.contador) {
+            return -1;
+          }
+          if (a.contador < b.contador) {
+            return 1;
+          }
+          // if (a.nombre.toLowerCase() > b.nombre.toLowerCase()) {
+          //   return -1;
+          // }
+          // if (a.nombre.toLowerCase() < b.nombre.toLowerCase()) {
+          //   return 1;
+          // }
+          return 0;
+        });
+      }
+      if (this.orden == "asc_nom") {
+        clonObj.sort((a, b) => {
+          // if (a.contador < b.contador) {
+          //   return -1;
+          // }
+          // if (a.contador > b.contador) {
+          //   return 1;
+          // }
           if (a.nombre.toLowerCase() < b.nombre.toLowerCase()) {
             return -1;
           }
@@ -45,14 +87,14 @@ export default {
           return 0;
         });
         // console.log(this.contadores);
-      } else if (this.orden == "desc") {
+      } else if (this.orden == "desc_nom") {
         clonObj.sort((a, b) => {
-          if (a.contador > b.contador) {
-            return -1;
-          }
-          if (a.contador < b.contador) {
-            return 1;
-          }
+          // if (a.contador > b.contador) {
+          //   return -1;
+          // }
+          // if (a.contador < b.contador) {
+          //   return 1;
+          // }
           if (a.nombre.toLowerCase() > b.nombre.toLowerCase()) {
             return -1;
           }
