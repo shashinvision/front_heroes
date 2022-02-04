@@ -97,6 +97,7 @@ export default {
     eliminar() {
       if (confirm("Estas apunto de eliminar un contador, estas seguro?")) {
         this.eliminarContador(this.dataContador.index);
+        // para enviar la informacion de que se refresque luego de eliminar un dato, quedando en orden inicial
         this.$emit("ordenEliminar", "");
       }
     },
