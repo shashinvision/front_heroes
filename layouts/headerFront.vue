@@ -6,11 +6,11 @@
           <select name="" id="">
             <option value="">-- Mayor que ---</option>
             <option
-              v-for="(option, index) in cantidadOptions"
+              v-for="(option, index) in cantidadOptionsMayor"
               :key="index"
-              :value="index"
+              :value="option"
             >
-              Mayor que {{ index }}
+              Mayor que {{ option }}
             </option>
           </select>
         </div>
@@ -18,11 +18,11 @@
           <select name="" id="">
             <option value="">-- Menor que ---</option>
             <option
-              v-for="(option, index) in cantidadOptions"
+              v-for="(option, index) in cantidadOptionsMenor"
               :key="index"
-              :value="index"
+              :value="option"
             >
-              Menor que {{ index }}
+              Menor que {{ option }}
             </option>
           </select>
         </div>
@@ -43,8 +43,11 @@ export default {
   },
   data() {
     return {
-      cantidadOptions: [
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20,
+      cantidadOptionsMayor: [
+        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+      ],
+      cantidadOptionsMenor: [
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
       ],
     };
   },
