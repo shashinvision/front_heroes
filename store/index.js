@@ -23,8 +23,11 @@ export const actions = {
     context.commit("sumaRestaContadorMutation", payload);
   },
   eliminarContadorAction(context, payload) {
-    console.log("payload eliminar", payload);
     context.commit("eliminarContadorMutation", payload);
+  },
+  actualizarContadorAction(context, payload) {
+    console.log("payload actualizar", payload);
+    context.commit("actualizarContadorMutation", payload);
   },
 };
 
@@ -51,6 +54,11 @@ export const mutations = {
         state.contadores.splice(i, 1);
       }
     }
+  },
+  actualizarContadorMutation(state, payload) {
+    console.log("payload de mutation", payload);
+
+    state.contadores = payload;
   },
 };
 

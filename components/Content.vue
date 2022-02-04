@@ -13,7 +13,7 @@
 
 <script>
 import contador from "./contador";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "FrontHeroesContent",
@@ -23,16 +23,15 @@ export default {
   computed: {
     ...mapGetters(["getContadores"]),
     ordenContadores() {
-      let arreglo = [];
-      for (let i = 0; i < this.getContadores.length; i++) {
-        arreglo.push(this.getContadores[i]);
+      for (let i = 0; i < this.clonObjt.length; i++) {
+        this.contadores.push(this.clonObjt[i]);
       }
 
       if (this.orden == "asc") {
         // console.log(this.getContadores);
-        // console.log(arreglo);
+        // console.log(contadores);
 
-        arreglo.sort((a, b) => {
+        this.contadores.sort((a, b) => {
           if (a.contador < b.contador) {
             return -1;
           }
@@ -47,9 +46,9 @@ export default {
           }
           return 0;
         });
-        console.log(arreglo);
+        console.log(this.contadores);
       } else if (this.orden == "desc") {
-        arreglo.sort((a, b) => {
+        this.contadores.sort((a, b) => {
           if (b.contador < a.contador) {
             return -1;
           }
@@ -64,20 +63,30 @@ export default {
           }
           return 0;
         });
-        console.log(arreglo);
+        console.log(this.contadores);
       }
-      return arreglo;
+      // this.updateContador(this.contadores);
+      return this.contadores;
     },
   },
   data() {
     return {
       orden: "",
+      contadores: [],
+      clonObjt: { ...this.getContadores },
     };
   },
 
   mounted() {},
 
-  methods: {},
+  methods: {
+    ...mapActions({
+      actualizarContador: "actualizarContadorAction",
+    }),
+    updateContador(payload) {
+      this.actualizarContador(payload);
+    },
+  },
 };
 </script>
 <style>
