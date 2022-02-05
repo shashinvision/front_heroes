@@ -1,8 +1,10 @@
 <template>
-  <div>
-    <a v-if="contadores.length < 20" href="#miModal" class="activacion"
-      >Nuevo</a
-    >
+  <div class="flex-container">
+    <div>
+      <a v-if="contadores.length < 20" href="#miModal" class="activacion"
+        >Nuevo</a
+      >
+    </div>
     <!-- <a href="javascript:void(0)" class="activacion">Nuevo</a> -->
     <div id="miModal" class="modal">
       <div class="modal-contenido">
@@ -96,6 +98,7 @@ a {
     padding-left: 43% !important;
     padding-right: 43% !important;
     margin-right: 10%;
+    width: 30% !important;
   }
 }
 </style>

@@ -1,15 +1,16 @@
 <template>
   <div id="contenedor" class="content centrar">
-    <select name="" id="ordenarSelect" v-model="orden">
-      <option value="">-- Ordenar --</option>
-      <option value="asc_nom">Ascendente nombre</option>
-      <option value="desc_nom">Descendente nombre</option>
-      <option value="asc_cont">Ascendente contador</option>
-      <option value="desc_cont">Descendente contador</option>
-    </select>
-
     <div class="col-6 d-flex">
-      <div class="col-6" id="select-container">
+      <div class="col-6 select-container" id="">
+        <select name="" id="ordenarSelect" v-model="orden">
+          <option value="">-- Ordenar --</option>
+          <option value="asc_nom">Ascendente nombre</option>
+          <option value="desc_nom">Descendente nombre</option>
+          <option value="asc_cont">Ascendente contador</option>
+          <option value="desc_cont">Descendente contador</option>
+        </select>
+      </div>
+      <div class="col-6 select-container" id="">
         <select
           name="mayorQue"
           id="mayorQue"
@@ -26,7 +27,7 @@
           </option>
         </select>
       </div>
-      <div class="col-6" id="select-container">
+      <div class="col-6 select-container" id="">
         <select
           name="menorQue"
           id="menorQue"
