@@ -3,7 +3,12 @@
     <div class="lateralBar flex-container">
       <div class="col-6 d-flex">
         <div class="col-6" id="select-container">
-          <select name="" id="">
+          <select
+            name="mayorQue"
+            id="mayorQue"
+            v-model="dataFiltro.dataMayorQue"
+            @change="activarFiltro"
+          >
             <option value="">-- Mayor que ---</option>
             <option
               v-for="(option, index) in cantidadOptionsMayor"
@@ -15,7 +20,12 @@
           </select>
         </div>
         <div class="col-6" id="select-container">
-          <select name="" id="">
+          <select
+            name="menorQue"
+            id="menorQue"
+            v-model="dataFiltro.dataMenorQue"
+            @change="activarFiltro"
+          >
             <option value="">-- Menor que ---</option>
             <option
               v-for="(option, index) in cantidadOptionsMenor"
@@ -35,6 +45,7 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 import modal from "../components/modal.vue";
 export default {
   name: "FrontHeroesHeader",
@@ -43,6 +54,10 @@ export default {
   },
   data() {
     return {
+      dataFiltro: {
+        dataMayorQue: "",
+        dataMenorQue: "",
+      },
       cantidadOptionsMayor: [
         0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
       ],
@@ -53,8 +68,24 @@ export default {
   },
 
   mounted() {},
-
-  methods: {},
+  methods: {
+    ...mapActions({
+      filtrosAction: "filtrosAction",
+    }),
+    activarFiltro(e) {
+      if (e.target.name == "mayorQue") {
+        this.dataFiltro.dataMenorQue = "";
+      } else if (e.target.name == "menorQue") {
+        this.dataFiltro.dataMayorQue = "";
+      }
+      // Para limpiar los valores de la busqueda previo a la busqueda
+      this.filtrosAction({
+        dataMayorQue: "",
+        dataMenorQue: "",
+      });
+      this.filtrosAction(this.dataFiltro);
+    },
+  },
 };
 </script>
 <style scoped>

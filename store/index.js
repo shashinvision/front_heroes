@@ -1,10 +1,33 @@
 export const state = () => ({
   contadores: [],
+  filtros: {
+    mayorQueActivado: "",
+    menorQueActivado: "",
+    filtroBusqueda: "",
+  },
 });
 
 export const getters = {
   getContadores(state) {
-    return state.contadores;
+    let resultado = [];
+    if (state.filtros.mayorQueActivado != "") {
+      for (let i = 0; i < state.contadores.length; i++) {
+        if (state.contadores[i].contador > state.filtros.mayorQueActivado) {
+          resultado.push(state.contadores[i]);
+        }
+      }
+    } else if (state.filtros.menorQueActivado != "") {
+      for (let i = 0; i < state.contadores.length; i++) {
+        if (state.contadores[i].contador < state.filtros.menorQueActivado) {
+          resultado.push(state.contadores[i]);
+        }
+      }
+    } else if (state.filtros.filtroBusqueda != "") {
+      // en proceso aun ...
+    } else {
+      resultado = state.contadores;
+    }
+    return resultado;
   },
   getTotalSumaContadores(state) {
     let resultado = 0;
@@ -26,8 +49,10 @@ export const actions = {
     context.commit("eliminarContadorMutation", payload);
   },
   actualizarContadorAction(context, payload) {
-    console.log("payload actualizar", payload);
     context.commit("actualizarContadorMutation", payload);
+  },
+  filtrosAction(context, payload) {
+    context.commit("filtrosMutation", payload);
   },
 };
 
@@ -56,10 +81,19 @@ export const mutations = {
     }
   },
   actualizarContadorMutation(state, payload) {
-    console.log("state previo al mutation", state.contadores);
-    console.log("payload de mutation", payload);
-
     state.contadores = payload;
+  },
+  filtrosMutation(state, payload) {
+    console.log("filtrosMutation payload", payload);
+    if (payload.dataMayorQue != "") {
+      state.filtros.mayorQueActivado = payload.dataMayorQue;
+    } else if (payload.dataMenorQue != "") {
+      state.filtros.menorQueActivado = payload.dataMenorQue;
+    } else {
+      state.filtros.mayorQueActivado = "";
+      state.filtros.menorQueActivado = "";
+      state.filtros.filtroBusqueda = ""; // falta desarrollo de esta actividad
+    }
   },
 };
 
