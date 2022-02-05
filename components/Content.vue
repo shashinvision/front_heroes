@@ -1,6 +1,5 @@
 <template>
   <div id="contenedor" class="content centrar">
-    {{ getContadores }}
     <select name="" id="ordenarSelect" v-model="orden">
       <option value="">-- Ordenar --</option>
       <option value="asc_nom">Ascendente nombre</option>
