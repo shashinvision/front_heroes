@@ -8,6 +8,43 @@
       <option value="desc_cont">Descendente contador</option>
     </select>
 
+    <div class="col-6 d-flex">
+      <div class="col-6" id="select-container">
+        <select
+          name="mayorQue"
+          id="mayorQue"
+          v-model="dataFiltro.dataMayorQue"
+          @change="activarFiltro"
+        >
+          <option value="">-- Mayor que ---</option>
+          <option
+            v-for="(option, index) in cantidadOptionsMayor"
+            :key="index"
+            :value="option"
+          >
+            Mayor que {{ option }}
+          </option>
+        </select>
+      </div>
+      <div class="col-6" id="select-container">
+        <select
+          name="menorQue"
+          id="menorQue"
+          v-model="dataFiltro.dataMenorQue"
+          @change="activarFiltro"
+        >
+          <option value="">-- Menor que ---</option>
+          <option
+            v-for="(option, index) in cantidadOptionsMenor"
+            :key="index"
+            :value="option"
+          >
+            Menor que {{ option }}
+          </option>
+        </select>
+      </div>
+    </div>
+
     <div v-if="orden == ''">
       <div v-for="(dataContador, index) in getContadores" :key="index">
         <contador
@@ -29,7 +66,7 @@
 
 <script>
 import contador from "./contador";
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions, mapState } from "vuex";
 
 export default {
   name: "FrontHeroesContent",
@@ -38,11 +75,13 @@ export default {
   },
   computed: {
     ...mapGetters(["getContadores"]),
+    ...mapState(["contadores"]),
     ordenContadores() {
-      let clonObj = JSON.parse(JSON.stringify(this.getContadores));
+      let clonObj = JSON.parse(JSON.stringify(this.contadores));
       console.log("clonObj", clonObj);
 
       if (this.orden == "asc_cont") {
+        this.limpiezaMayorMenor();
         clonObj.sort((a, b) => {
           if (a.contador < b.contador) {
             return -1;
@@ -60,6 +99,7 @@ export default {
         });
         // console.log(this.contadores);
       } else if (this.orden == "desc_cont") {
+        this.limpiezaMayorMenor();
         clonObj.sort((a, b) => {
           if (a.contador > b.contador) {
             return -1;
@@ -77,6 +117,7 @@ export default {
         });
       }
       if (this.orden == "asc_nom") {
+        this.limpiezaMayorMenor();
         clonObj.sort((a, b) => {
           // if (a.contador < b.contador) {
           //   return -1;
@@ -94,6 +135,7 @@ export default {
         });
         // console.log(this.contadores);
       } else if (this.orden == "desc_nom") {
+        this.limpiezaMayorMenor();
         clonObj.sort((a, b) => {
           // if (a.contador > b.contador) {
           //   return -1;
@@ -119,6 +161,16 @@ export default {
   data() {
     return {
       orden: "",
+      dataFiltro: {
+        dataMayorQue: "",
+        dataMenorQue: "",
+      },
+      cantidadOptionsMayor: [
+        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+      ],
+      cantidadOptionsMenor: [
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+      ],
     };
   },
 
@@ -127,6 +179,7 @@ export default {
   methods: {
     ...mapActions({
       actualizarContador: "actualizarContadorAction",
+      filtrosAction: "filtrosAction",
     }),
     updateContador(payload) {
       this.actualizarContador(payload);
@@ -134,6 +187,24 @@ export default {
     ordenEliminar(data) {
       this.orden = data;
       // document.getElementById("ordenarSelect").selectedIndex = 0;
+    },
+    activarFiltro(e) {
+      this.orden = "";
+      if (e.target.name == "mayorQue") {
+        this.dataFiltro.dataMenorQue = "";
+      } else if (e.target.name == "menorQue") {
+        this.dataFiltro.dataMayorQue = "";
+      }
+      // Para limpiar los valores de la busqueda previo a la busqueda
+      this.filtrosAction({
+        dataMayorQue: "",
+        dataMenorQue: "",
+      });
+      this.filtrosAction(this.dataFiltro);
+    },
+    limpiezaMayorMenor() {
+      this.dataFiltro.dataMayorQue = "";
+      this.dataFiltro.dataMenorQue = "";
     },
   },
 };
