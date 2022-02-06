@@ -2,7 +2,12 @@
   <div id="contenedor" class="content centrar">
     <div class="col-6 d-flex">
       <div class="col-6 select-container" id="">
-        <select name="" id="ordenarSelect" v-model="orden">
+        <select
+          name="ordenarSelect"
+          id="ordenarSelect"
+          v-model="dataFiltro.orden"
+          @change="activarFiltro"
+        >
           <option value="">-- Ordenar --</option>
           <option value="asc_nom">Ascendente nombre</option>
           <option value="desc_nom">Descendente nombre</option>
@@ -46,7 +51,7 @@
       </div>
     </div>
 
-    <div v-if="orden == ''">
+    <div v-if="dataFiltro.orden == ''">
       <div v-for="(dataContador, index) in getContadores" :key="index">
         <contador
           @ordenEliminar="ordenEliminar"
@@ -76,12 +81,12 @@ export default {
   },
   computed: {
     ...mapGetters(["getContadores"]),
-    ...mapState(["contadores"]),
+    ...mapState(["contadores", "filtros"]),
     ordenContadores() {
       let clonObj = JSON.parse(JSON.stringify(this.contadores));
       console.log("clonObj", clonObj);
 
-      if (this.orden == "asc_cont") {
+      if (this.dataFiltro.orden == "asc_cont") {
         this.limpiezaMayorMenor();
         clonObj.sort((a, b) => {
           if (a.contador < b.contador) {
@@ -99,7 +104,7 @@ export default {
           return 0;
         });
         // console.log(this.contadores);
-      } else if (this.orden == "desc_cont") {
+      } else if (this.dataFiltro.orden == "desc_cont") {
         this.limpiezaMayorMenor();
         clonObj.sort((a, b) => {
           if (a.contador > b.contador) {
@@ -117,7 +122,7 @@ export default {
           return 0;
         });
       }
-      if (this.orden == "asc_nom") {
+      if (this.dataFiltro.orden == "asc_nom") {
         this.limpiezaMayorMenor();
         clonObj.sort((a, b) => {
           // if (a.contador < b.contador) {
@@ -135,7 +140,7 @@ export default {
           return 0;
         });
         // console.log(this.contadores);
-      } else if (this.orden == "desc_nom") {
+      } else if (this.dataFiltro.orden == "desc_nom") {
         this.limpiezaMayorMenor();
         clonObj.sort((a, b) => {
           // if (a.contador > b.contador) {
@@ -161,10 +166,10 @@ export default {
   },
   data() {
     return {
-      orden: "",
       dataFiltro: {
         dataMayorQue: "",
         dataMenorQue: "",
+        orden: "",
       },
       cantidadOptionsMayor: [
         0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
@@ -177,6 +182,7 @@ export default {
 
   mounted() {
     this.loadContadores();
+    this.inicioFiltrosSession();
   },
 
   methods: {
@@ -189,26 +195,33 @@ export default {
       this.actualizarContador(payload);
     },
     ordenEliminar(data) {
-      this.orden = data;
+      this.dataFiltro.orden = data;
       // document.getElementById("ordenarSelect").selectedIndex = 0;
     },
     activarFiltro(e) {
-      this.orden = "";
+      this.dataFiltro.orden = "";
       if (e.target.name == "mayorQue") {
         this.dataFiltro.dataMenorQue = "";
       } else if (e.target.name == "menorQue") {
         this.dataFiltro.dataMayorQue = "";
+      } else if (e.target.name == "ordenarSelect") {
+        this.dataFiltro.orden = e.target.value;
       }
       // Para limpiar los valores de la busqueda previo a la busqueda
       this.filtrosAction({
         dataMayorQue: "",
         dataMenorQue: "",
+        orden: "",
       });
       this.filtrosAction(this.dataFiltro);
     },
     limpiezaMayorMenor() {
       this.dataFiltro.dataMayorQue = "";
       this.dataFiltro.dataMenorQue = "";
+    },
+    inicioFiltrosSession() {
+      this.dataFiltro.orden =
+        sessionStorage.getItem("filtroBusqueda") || this.filtros.filtroBusqueda;
     },
   },
 };

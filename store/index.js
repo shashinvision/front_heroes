@@ -106,10 +106,13 @@ export const mutations = {
       state.filtros.mayorQueActivado = payload.dataMayorQue;
     } else if (payload.dataMenorQue != "") {
       state.filtros.menorQueActivado = payload.dataMenorQue;
+    } else if (payload.orden != "") {
+      state.filtros.filtroBusqueda = payload.orden;
+      sessionStorage.setItem("filtroBusqueda", payload.orden);
     } else {
       state.filtros.mayorQueActivado = "";
       state.filtros.menorQueActivado = "";
-      state.filtros.filtroBusqueda = ""; // falta desarrollo de esta actividad
+      state.filtros.filtroBusqueda = "";
     }
   },
 };
