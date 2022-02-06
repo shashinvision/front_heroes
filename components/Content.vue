@@ -222,12 +222,10 @@ export default {
     inicioFiltrosSession() {
       this.dataFiltro.orden =
         sessionStorage.getItem("orden") || this.filtros.filtroBusqueda;
-      this.dataFiltro.mayorQue =
-        sessionStorage.getItem("mayorQueActivado") ||
-        this.filtros.mayorQueActivado;
-      this.dataFiltro.menorQue =
-        sessionStorage.getItem("menorQueActivado") ||
-        this.filtros.menorQueActivado;
+      this.dataFiltro.dataMayorQue =
+        sessionStorage.getItem("dataMayorQue") || this.filtros.mayorQueActivado;
+      this.dataFiltro.dataMenorQue =
+        sessionStorage.getItem("dataMenorQue") || this.filtros.menorQueActivado;
     },
   },
 };
