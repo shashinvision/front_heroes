@@ -58,6 +58,10 @@ select,
 
 #buscadorSeleccion {
   width: 50%;
+  margin-left: 25%;
+}
+#buscadorSeleccion::placeholder {
+  color: white;
 }
 
 .d-flex {
@@ -73,7 +77,8 @@ div .select-container {
 }
 @media (max-width: 621px) {
   #buscadorSeleccion {
-    width: 100%;
+    width: 98%;
+    margin-left: 0;
   }
   .col-6 {
     display: block !important;

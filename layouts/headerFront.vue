@@ -10,6 +10,7 @@
         id="buscadorSeleccion"
         v-model="textoFiltro"
         @keyup="filtro"
+        placeholder="busqueda..."
       />
     </div>
   </div>
