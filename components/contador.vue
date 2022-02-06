@@ -183,6 +183,10 @@ input {
 @media (max-width: 376px) {
   input {
     display: block !important;
+    width: 80%;
+  }
+  .button-container button {
+    margin: 0;
   }
 }
 </style>
