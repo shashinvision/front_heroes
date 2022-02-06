@@ -97,6 +97,8 @@ export const mutations = {
         state.contadores.splice(i, 1);
       }
     }
+
+    localStorage.setItem("contadores", JSON.stringify(state.contadores));
   },
   actualizarContadorMutation(state, payload) {
     state.contadores = payload;
