@@ -221,7 +221,13 @@ export default {
     },
     inicioFiltrosSession() {
       this.dataFiltro.orden =
-        sessionStorage.getItem("filtroBusqueda") || this.filtros.filtroBusqueda;
+        sessionStorage.getItem("orden") || this.filtros.filtroBusqueda;
+      this.dataFiltro.mayorQue =
+        sessionStorage.getItem("mayorQueActivado") ||
+        this.filtros.mayorQueActivado;
+      this.dataFiltro.menorQue =
+        sessionStorage.getItem("menorQueActivado") ||
+        this.filtros.menorQueActivado;
     },
   },
 };

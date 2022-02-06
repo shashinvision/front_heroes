@@ -104,11 +104,19 @@ export const mutations = {
   filtrosMutation(state, payload) {
     if (payload.dataMayorQue != "") {
       state.filtros.mayorQueActivado = payload.dataMayorQue;
+      sessionStorage.setItem("dataMayorQue", payload.dataMayorQue);
+      sessionStorage.setItem("orden", "");
+      sessionStorage.setItem("dataMenorQue", "");
     } else if (payload.dataMenorQue != "") {
       state.filtros.menorQueActivado = payload.dataMenorQue;
+      sessionStorage.setItem("dataMenorQue", payload.dataMenorQue);
+      sessionStorage.setItem("orden", "");
+      sessionStorage.setItem("dataMayorQue", "");
     } else if (payload.orden != "") {
       state.filtros.filtroBusqueda = payload.orden;
-      sessionStorage.setItem("filtroBusqueda", payload.orden);
+      sessionStorage.setItem("orden", payload.orden);
+      sessionStorage.setItem("dataMayorQue", "");
+      sessionStorage.setItem("dataMenorQue", "");
     } else {
       state.filtros.mayorQueActivado = "";
       state.filtros.menorQueActivado = "";
