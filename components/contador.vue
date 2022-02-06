@@ -75,6 +75,9 @@ export default {
       }
     },
     mas() {
+      this.contadorInput.contador = JSON.parse(
+        JSON.stringify(this.dataContador.dataContador.contador)
+      );
       if (this.contadorInput.contador < 20) {
         this.contadorInput.contador++;
         let data = {
@@ -85,6 +88,9 @@ export default {
       }
     },
     menos() {
+      this.contadorInput.contador = JSON.parse(
+        JSON.stringify(this.dataContador.dataContador.contador)
+      );
       if (this.contadorInput.contador > 0) {
         this.contadorInput.contador--;
         let data = {

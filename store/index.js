@@ -54,6 +54,14 @@ export const actions = {
   filtrosAction(context, payload) {
     context.commit("filtrosMutation", payload);
   },
+  inicioContadoresAction(context) {
+    if (JSON.parse(localStorage.getItem("contadores"))) {
+      context.commit(
+        "inicioContadoresMutation",
+        JSON.parse(localStorage.getItem("contadores"))
+      );
+    }
+  },
 };
 
 export const mutations = {
@@ -62,14 +70,24 @@ export const mutations = {
       alert("No es permitido crear más de 20 contadores");
     }
     {
+      if (JSON.parse(localStorage.getItem("contadores"))) {
+        state.contadores = JSON.parse(localStorage.getItem("contadores"));
+      }
       state.contadores.push(payload);
+      localStorage.setItem("contadores", JSON.stringify(state.contadores));
     }
+  },
+  inicioContadoresMutation(state, payload) {
+    state.contadores = payload;
   },
   sumaRestaContadorMutation(state, payload) {
     for (let i = 0; i < state.contadores.length; i++) {
       if (payload.indexContador == i) {
-        console.log("contador", state.contadores[i]);
+        let dataLocal = JSON.parse(localStorage.getItem("contadores"));
+
         state.contadores[i].contador = payload.contador;
+        dataLocal[i].contador = payload.contador;
+        localStorage.setItem("contadores", JSON.stringify(dataLocal));
       }
     }
   },
@@ -84,7 +102,6 @@ export const mutations = {
     state.contadores = payload;
   },
   filtrosMutation(state, payload) {
-    console.log("filtrosMutation payload", payload);
     if (payload.dataMayorQue != "") {
       state.filtros.mayorQueActivado = payload.dataMayorQue;
     } else if (payload.dataMenorQue != "") {

@@ -175,12 +175,15 @@ export default {
     };
   },
 
-  mounted() {},
+  mounted() {
+    this.loadContadores();
+  },
 
   methods: {
     ...mapActions({
       actualizarContador: "actualizarContadorAction",
       filtrosAction: "filtrosAction",
+      loadContadores: "inicioContadoresAction",
     }),
     updateContador(payload) {
       this.actualizarContador(payload);
