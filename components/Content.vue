@@ -199,12 +199,17 @@ export default {
       // document.getElementById("ordenarSelect").selectedIndex = 0;
     },
     activarFiltro(e) {
-      this.dataFiltro.orden = "";
       if (e.target.name == "mayorQue") {
         this.dataFiltro.dataMenorQue = "";
+        this.dataFiltro.orden = "";
+        this.dataFiltro.dataMayorQue = e.target.value;
       } else if (e.target.name == "menorQue") {
+        this.dataFiltro.orden = "";
         this.dataFiltro.dataMayorQue = "";
+        this.dataFiltro.dataMenorQue = e.target.value;
       } else if (e.target.name == "ordenarSelect") {
+        this.dataFiltro.dataMenorQue = "";
+        this.dataFiltro.dataMayorQue = "";
         this.dataFiltro.orden = e.target.value;
       }
       // Para limpiar los valores de la busqueda previo a la busqueda
