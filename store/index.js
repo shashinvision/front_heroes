@@ -100,6 +100,7 @@ export const mutations = {
   },
   actualizarContadorMutation(state, payload) {
     state.contadores = payload;
+    localStorage.setItem("contadores", JSON.stringify(state.contadores));
   },
   filtrosMutation(state, payload) {
     if (payload.dataMayorQue != "") {
