@@ -4,6 +4,7 @@ export const state = () => ({
     mayorQueActivado: "",
     menorQueActivado: "",
     filtroBusqueda: "",
+    buscadorText: "",
   },
 });
 
@@ -22,8 +23,20 @@ export const getters = {
           resultado.push(state.contadores[i]);
         }
       }
-    } else if (state.filtros.filtroBusqueda != "") {
-      // en proceso aun ...
+    }
+    if (state.filtros.buscadorText != "") {
+      for (let i = 0; i < state.contadores.length; i++) {
+        if (
+          state.contadores[i].nombre
+            .toString()
+            .includes(state.filtros.buscadorText) ||
+          state.contadores[i].contador
+            .toString()
+            .includes(state.filtros.buscadorText)
+        ) {
+          resultado.push(state.contadores[i]);
+        }
+      }
     } else {
       resultado = state.contadores;
     }
@@ -54,6 +67,9 @@ export const actions = {
   filtrosAction(context, payload) {
     context.commit("filtrosMutation", payload);
   },
+  filtrosTextAction(context, payload) {
+    context.commit("filtrosTextMutation", payload);
+  },
   inicioContadoresAction(context) {
     if (JSON.parse(localStorage.getItem("contadores"))) {
       context.commit(
@@ -76,6 +92,9 @@ export const mutations = {
       state.contadores.push(payload);
       localStorage.setItem("contadores", JSON.stringify(state.contadores));
     }
+  },
+  filtrosTextMutation(state, payload) {
+    state.filtros.buscadorText = payload;
   },
   inicioContadoresMutation(state, payload) {
     state.contadores = payload;

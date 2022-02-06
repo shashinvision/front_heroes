@@ -46,13 +46,18 @@ i:active {
 a {
   text-decoration: none;
 }
-select {
+select,
+#buscadorSeleccion {
   width: 100%;
   background-color: #5c6bc0;
   border-color: #5c6bc0;
   border-radius: 3px;
   padding: 5px;
   color: white;
+}
+
+#buscadorSeleccion {
+  width: 50%;
 }
 
 .d-flex {
@@ -67,6 +72,9 @@ div .select-container {
   margin: 0 auto !important;
 }
 @media (max-width: 621px) {
+  #buscadorSeleccion {
+    width: 100%;
+  }
   .col-6 {
     display: block !important;
     width: 80%;

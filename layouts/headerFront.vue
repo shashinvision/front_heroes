@@ -3,10 +3,21 @@
     <div class="col-6">
       <modal />
     </div>
+    <div class="col-6" id="">
+      <input
+        type="text"
+        name="buscadorSeleccion"
+        id="buscadorSeleccion"
+        v-model="textoFiltro"
+        @keyup="filtro"
+      />
+      {{ textoFiltro }}
+    </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import modal from "../components/modal.vue";
 export default {
   name: "FrontHeroesHeader",
@@ -14,11 +25,18 @@ export default {
     modal,
   },
   data() {
-    return {};
+    return {
+      textoFiltro: "",
+    };
   },
 
   mounted() {},
-  methods: {},
+  methods: {
+    ...mapActions(["filtrosTextAction"]),
+    filtro() {
+      this.filtrosTextAction(this.textoFiltro);
+    },
+  },
 };
 </script>
 <style scoped>
