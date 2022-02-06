@@ -1,8 +1,8 @@
 export const state = () => ({
   contadores: [],
   filtros: {
-    mayorQueActivado: "",
-    menorQueActivado: "",
+    dataMayorQue: "",
+    dataMenorQue: "",
     filtroBusqueda: "",
     buscadorText: "",
   },
@@ -11,19 +11,8 @@ export const state = () => ({
 export const getters = {
   getContadores(state) {
     let resultado = [];
-    if (state.filtros.mayorQueActivado != "") {
-      for (let i = 0; i < state.contadores.length; i++) {
-        if (state.contadores[i].contador > state.filtros.mayorQueActivado) {
-          resultado.push(state.contadores[i]);
-        }
-      }
-    } else if (state.filtros.menorQueActivado != "") {
-      for (let i = 0; i < state.contadores.length; i++) {
-        if (state.contadores[i].contador < state.filtros.menorQueActivado) {
-          resultado.push(state.contadores[i]);
-        }
-      }
-    }
+    console.log("data State", state.filtros);
+
     if (state.filtros.buscadorText != "") {
       for (let i = 0; i < state.contadores.length; i++) {
         if (
@@ -34,6 +23,18 @@ export const getters = {
             .toString()
             .includes(state.filtros.buscadorText)
         ) {
+          resultado.push(state.contadores[i]);
+        }
+      }
+    } else if (state.filtros.dataMayorQue != "") {
+      for (let i = 0; i < state.contadores.length; i++) {
+        if (state.contadores[i].contador > state.filtros.dataMayorQue) {
+          resultado.push(state.contadores[i]);
+        }
+      }
+    } else if (state.filtros.dataMenorQue != "") {
+      for (let i = 0; i < state.contadores.length; i++) {
+        if (state.contadores[i].contador < state.filtros.dataMenorQue) {
           resultado.push(state.contadores[i]);
         }
       }
@@ -95,6 +96,9 @@ export const mutations = {
   },
   filtrosTextMutation(state, payload) {
     state.filtros.buscadorText = payload;
+    state.filtros.dataMayorQue = "";
+    state.filtros.dataMenorQue = "";
+    state.filtros.filtroBusqueda = "";
   },
   inicioContadoresMutation(state, payload) {
     state.contadores = payload;
@@ -125,12 +129,12 @@ export const mutations = {
   },
   filtrosMutation(state, payload) {
     if (payload.dataMayorQue != "") {
-      state.filtros.mayorQueActivado = payload.dataMayorQue;
+      state.filtros.dataMayorQue = payload.dataMayorQue;
       sessionStorage.setItem("dataMayorQue", payload.dataMayorQue);
       sessionStorage.setItem("orden", "");
       sessionStorage.setItem("dataMenorQue", "");
     } else if (payload.dataMenorQue != "") {
-      state.filtros.menorQueActivado = payload.dataMenorQue;
+      state.filtros.dataMenorQue = payload.dataMenorQue;
       sessionStorage.setItem("dataMenorQue", payload.dataMenorQue);
       sessionStorage.setItem("orden", "");
       sessionStorage.setItem("dataMayorQue", "");
@@ -140,8 +144,8 @@ export const mutations = {
       sessionStorage.setItem("dataMayorQue", "");
       sessionStorage.setItem("dataMenorQue", "");
     } else {
-      state.filtros.mayorQueActivado = "";
-      state.filtros.menorQueActivado = "";
+      state.filtros.dataMayorQue = "";
+      state.filtros.dataMenorQue = "";
       state.filtros.filtroBusqueda = "";
     }
   },

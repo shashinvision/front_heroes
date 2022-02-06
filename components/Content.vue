@@ -228,9 +228,9 @@ export default {
       this.dataFiltro.orden =
         sessionStorage.getItem("orden") || this.filtros.filtroBusqueda;
       this.dataFiltro.dataMayorQue =
-        sessionStorage.getItem("dataMayorQue") || this.filtros.mayorQueActivado;
+        sessionStorage.getItem("dataMayorQue") || this.filtros.dataMayorQue;
       this.dataFiltro.dataMenorQue =
-        sessionStorage.getItem("dataMenorQue") || this.filtros.menorQueActivado;
+        sessionStorage.getItem("dataMenorQue") || this.filtros.dataMenorQue;
     },
   },
 };
