@@ -11,7 +11,6 @@
         v-model="textoFiltro"
         @keyup="filtro"
       />
-      {{ textoFiltro }}
     </div>
   </div>
 </template>
